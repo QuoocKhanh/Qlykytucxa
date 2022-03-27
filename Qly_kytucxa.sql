@@ -42,13 +42,45 @@ create table Account
     Password nvarchar(1000) not null,
     Account_type int not null default 0 -- 0 la staff va 1 la admin
 );
--- Hai ThutienPhong , traphong , que
+-- Hai ThutienPhong , traphong 
+create table Thutienphong
+(
+	Ma_phong int not null,
+    Thang int not null,
+    Nam int not null,
+    primary key (Ma_phong, Thang, Nam),
+    Tiennha decimal not null,
+    Tiendien decimal not null,
+    Tiennuoc decimal not null,
+    Tienvesinh decimal not null,
+    Tienphat decimal,
+    Ngayhethan date not null,
+    Ngaydong date not null,
+    foreign key (Ma_phong) references Phong(Ma_phong)
+);
+create table Traphong
+(
+	Masothue int not null,
+    Ngaytra date not null,
+    Tienvipham decimal,
+    foreign key (Masothue) references Thuephong (Masothue)
+);
 
-
--- Hieu sinh vien , Khoa , lop  ,thue phong
+-- Hieu sinh vien, Khoa, lop, thue phong, que
+create table Thuephong
+(
+	Masothue int primary key not null,
+    Masv int not null,
+    Ma_phong int not null,
+    NgayBDau date not null,
+    Ngaykt date not null,
+    Ghichu text,
+    foreign key (Ma_phong) references Phong(Ma_phong),
+    foreign key (Masv) references Sinhvien(Ma_sv)
+);
 create table Sinhvien
 (
-	ma_sv int primary key not null,
+	Ma_sv int primary key not null,
     Ten_sv varchar(50) not null,
     Ngaysinh int not null,
     Gioitinh varchar(10) not null,
