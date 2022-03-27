@@ -15,8 +15,33 @@ create table Phong
         Tien_Thue decimal not null,
         Ghi_Chu text
 );
-
-
+create table Thietbi_Phong
+(
+		Ma_Phong int not null,
+        Ma_Thiet_Bi int not null,
+        So_Luong int,
+        Tinh_Trang nvarchar(50) not null,
+        FOREIGN KEY (Ma_Phong) REFERENCES Phong(Ma_Phong),
+        FOREIGN KEY (Ma_Thiet_Bi) REFERENCES Thiet_Bi(Ma_Thiet_Bi)
+);
+create table Khu_nha
+(
+		Ma_Nha int primary key not null,
+        Ten_Nha nvarchar(20) not null
+);
+create table Thiet_Bi
+(
+		Ma_Thiet_Bi int primary key not null,
+        Ten_Thiet_Bi nvarchar(30) not null,
+        Gia_Tri decimal not null 
+);
+create table Account 
+(
+	Account_id int primary key,
+	Username nvarchar(100) not null,
+    Password nvarchar(1000) not null,
+    Account_type int not null default 0 -- 0 la staff va 1 la admin
+);
 -- Hai ThutienPhong , traphong , que
 
 
