@@ -21,3 +21,33 @@ create table Phong
 
 
 -- Hieu sinh vien , Khoa , lop  ,thue phong
+create table Sinhvien
+(
+	ma_sv int primary key not null,
+    Ten_sv varchar(50) not null,
+    Ngaysinh int not null,
+    Gioitinh varchar(10) not null,
+    MaQue int not null,
+    MaKhoa int not null,
+    MaLop int not null
+);
+
+create table Khoa
+(
+	Makhoa int primary key not null,
+    Tenkhoa varchar(20)
+);
+
+create table Lop
+(
+	Malop int primary key not null,
+    Tenlop int not null,
+    Makhoa int not null,
+    constraint fk_makhoa foreign key (Makhoa) references Khoa(Makhoa)
+);
+
+create table Que
+(
+	Maque int primary key not null,
+    Tenque varchar(20) not null
+);
